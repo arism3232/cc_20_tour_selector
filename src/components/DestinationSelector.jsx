@@ -10,8 +10,8 @@ function DestinationSelector({tours, selectedDestination, onDestinationChange}) 
             value={selectedDestination} 
             onChange={(e) => onDestinationChange(e.target.value)}
         >
-            {destinations.map((destination, index) => (
-            <option key={index} value={destination}>
+            {destinations.map((destination) => (
+            <option key={destination} value={destination}>
                 {destination}
             </option>
             ))}
