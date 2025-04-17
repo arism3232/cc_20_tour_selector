@@ -21,11 +21,11 @@ function Gallery({ tours, loading, error, removeTour, refreshTours}) {
     }
 
     return (
-        <section className="gallery">
+        <div className="gallery">
             {tours.map((tour) => (
                 <TourCard key={tour.id} tour={tour} removeTour={removeTour} />
             ))}
-        </section>
+        </div>
     );
 }
 export default Gallery;
