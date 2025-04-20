@@ -53,7 +53,7 @@ function App() {
     setLoading(true); // resetting loading state
     setError(null); // clearing error state
     try {
-      const response = await fetch('https://course-api.com/react-tours-project');
+      const response = await fetch('/api/react-tours-project');
       if (!response.ok) throw new Error('Failed to fetch tours');
       const data = await response.json();
       setTours(data);
