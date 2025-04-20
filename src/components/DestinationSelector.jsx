@@ -4,7 +4,7 @@ function DestinationSelector({tours, selectedDestination, onDestinationChange}) 
     
     return (
         <div className="destination-selector">
-        <label htmlFor="destination">Select Destination:</label>
+        <label htmlFor="destination">Select Destination:</label> {/* label for accessibility */}
         <select 
             id="destination" 
             value={selectedDestination} 
@@ -14,7 +14,7 @@ function DestinationSelector({tours, selectedDestination, onDestinationChange}) 
             <option key={destination} value={destination}>
                 {destination}
             </option>
-            ))}
+            ))} {/* rendering options for each destination */ }
         </select>
         </div>
     );

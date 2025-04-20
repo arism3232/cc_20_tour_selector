@@ -4,7 +4,7 @@ import DestinationSelector from './components/DestinationSelector';
 import './App.css';
 
 function App() {
-  const [tours, setTours] = useState([]);
+  const [tours, setTours] = useState([]); // state for tours, filtered tours, loading state, error state, and selected destination
   const [filteredTours, setFilteredTours] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,13 +15,13 @@ function App() {
     const fetchTours = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/react-tours-project');
+        const response = await fetch('/api/react-tours-project'); // fetching tour data using vite proxy
         if (!response.ok) throw new Error('Failed to fetch tours');
         const data = await response.json();
         setTours(data);
         setFilteredTours(data); // Initially showing all tours
       } catch (err) {
-        setError(err.message);
+        setError(err.message); // Setting error state if fetch fails
       } finally {
         setLoading(false);
       }
@@ -33,9 +33,9 @@ function App() {
   const handleDestinationChange = (destination) => {
     setSelectedDestination(destination);
     if (destination === 'All Destinations') {
-      setFilteredTours(tours);
+      setFilteredTours(tours); // showing all tours if 'All Destinations' is selected
     } else {
-      setFilteredTours(tours.filter((tour) => tour.name === destination));
+      setFilteredTours(tours.filter((tour) => tour.name === destination)); // filtering tours based on selected destination
     }
   };
 
@@ -50,14 +50,15 @@ function App() {
 
   // Reseting tours
   const refreshTours = async () => {
-    setLoading(true);
+    setLoading(true); // resetting loading state
+    setError(null); // clearing error state
     try {
       const response = await fetch('https://course-api.com/react-tours-project');
       if (!response.ok) throw new Error('Failed to fetch tours');
       const data = await response.json();
       setTours(data);
       setFilteredTours(data);
-      setSelectedDestination('All Destinations');
+      setSelectedDestination('All Destinations'); // resetting selected tours and destination
     } catch (err) {
       setError(err.message);
     } finally {
@@ -71,14 +72,14 @@ function App() {
       <DestinationSelector 
         tours={tours} 
         selectedDestination={selectedDestination}
-        onDestinationChange={handleDestinationChange}
+        onDestinationChange={handleDestinationChange} // rendering title and destination selector
       />
       <Gallery 
         tours={filteredTours} 
         loading={loading} 
         error={error} 
         removeTour={removeTour}
-        refreshTours={refreshTours}
+        refreshTours={refreshTours} // rendering gallery with filtered tours, loading state, error state, and remove tour function
       />
     </div>
   );
