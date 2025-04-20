@@ -15,7 +15,11 @@ function App() {
     const fetchTours = async () => {
       try {
         setLoading(true);
-        const response = await fetch('https://course-api.com/react-tours-project');
+        const response = await fetch('https://course-api.com/react-tours-project', {
+          headers: {
+            'Access-Control-Allow-Origin': '*', // This header is ignored by browsers for security reasons
+          },
+        });
         if (!response.ok) throw new Error('Failed to fetch tours');
         const data = await response.json();
         setTours(data);
